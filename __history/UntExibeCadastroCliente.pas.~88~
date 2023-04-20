@@ -1,0 +1,180 @@
+unit UntExibeCadastroCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.StdCtrls, Vcl.DBCtrls,
+  Vcl.ExtCtrls;
+
+type
+  TfrmExibeCadastroCliente = class(TForm)
+    LbCodigoCliente: TLabel;
+    LbNomeCli: TLabel;
+    LbDataCadastroCliente: TLabel;
+    lbCpfCliente: TLabel;
+    lbEndereco: TLabel;
+    lbNumero: TLabel;
+    lbNumeroTelefone: TLabel;
+    edtCodCli: TEdit;
+    edtDataCadastro: TMaskEdit;
+    edtNomeCli: TDBEdit;
+    edtCpf: TDBEdit;
+    edtEndereco: TDBEdit;
+    edtNumResidencia: TDBEdit;
+    edtTelefone: TDBEdit;
+    btneditar: TButton;
+    bntExcluir: TButton;
+    lbSaldDeve: TLabel;
+    edtfiadotest: TDBEdit;
+    bntPago: TButton;
+    edtPago: TEdit;
+    lbPago: TLabel;
+    procedure edtCodCliKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edtCodCliKeyPress(Sender: TObject; var Key: Char);
+
+    procedure FormShow(Sender: TObject);
+    procedure bntExcluirClick(Sender: TObject);
+    procedure edtTelefoneKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btneditarClick(Sender: TObject);
+    procedure bntPagoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmExibeCadastroCliente: TfrmExibeCadastroCliente ;
+  LocalizaCodigoCli : string ;
+  pago : Currency ;
+
+implementation
+
+uses  untDmConexao,principal_main , untConsultaCliente, UntFuncoes, UntVendas,
+  untCadastroCliente, untCadastroProduto, untConsultaProdutos,
+  UntExibeCadastroProduto, UntFiadoCli, Venda_Itens;
+
+{$R *.dfm}
+
+
+
+procedure TfrmExibeCadastroCliente.bntExcluirClick(Sender: TObject);
+begin
+       begin
+       with dmconexoes do
+       begin
+       qrcliente.Close  ;
+       qrcliente.SQL.Clear;
+       qrcliente.SQL.text := 'delete FROM CADASTRO WHERE CODIGO = :pcod'  ;
+       qrcliente.Parameters.ParamByName('pcod').Value :=  edtcodCli.Text ;
+       qrcliente.ExecSQL;
+
+       edtDataCadastro.clear;
+       end;
+       end;
+
+end;
+
+
+
+procedure TfrmExibeCadastroCliente.bntPagoClick(Sender: TObject);
+
+begin
+
+  with dmconexoes do
+   begin
+
+
+     pago := StrToCurr(edtfiadotest.text) - StrToCurr(edtPago.text);
+     qrCliente.Edit;
+     qrCliente.FieldByName('valorfiado').Value   :=  pago ;
+     qrCliente.post;
+
+   end;
+
+
+      application.MessageBox (pchar('Valor pago '+ #13+ 'R$' + edtpago.text),'Venda  ',mb_ok+MB_ICONINFORMATION);
+      edtPago.clear ;
+
+end;
+
+procedure TfrmExibeCadastroCliente.btneditarClick(Sender: TObject);
+begin
+edtNomeCli.Enabled := true ;
+edtEndereco.Enabled := true ;
+edtNumResidencia.Enabled := true ;
+edtTelefone.Enabled := true ;
+edtCpf.Enabled := true ;
+end;
+
+procedure TfrmExibeCadastroCliente.edtCodCliKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+with dmconexoes do
+
+  if key = vk_f2 then
+      begin
+
+      frmConsultaCliente.ShowModal;
+
+      edtCodCli.text :=  LocalizaCodigoCli;
+      edtCodCliKeyPress(self,keyEnter);
+
+
+      end;
+
+
+
+
+
+end;
+
+procedure TfrmExibeCadastroCliente.edtCodCliKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+     if key = #13 then
+     begin
+     with dmconexoes do
+     begin
+       qrcliente.Close  ;
+       qrcliente.SQL.Clear;
+       qrcliente.SQL.Add('SELECT * FROM CADASTRO WHERE CODIGO = :pcod')  ;
+       qrcliente.Parameters.ParamByName('pcod').Value :=  edtcodCli.Text ;
+       qrcliente.Open;
+
+       edtDataCadastro.Text := FormatDateTime('dd/mm/yyyy',qrcliente.FieldByName('datacadastrocliente').AsDateTime)
+
+      end;
+      end;
+
+end;
+
+
+
+
+procedure TfrmExibeCadastroCliente.edtTelefoneKeyUp(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+//somenteInt (edtTelefone);
+end;
+
+procedure TfrmExibeCadastroCliente.FormShow(Sender: TObject);
+
+  begin
+   with dmConexoes do
+   begin
+   qrcliente.Close  ;
+   qrcliente.SQL.Clear;
+   qrcliente.SQL.Add('SELECT * FROM CADASTRO WHERE CODIGO = 0')  ;
+   qrcliente.Open;
+
+   edtCodCli.Text := '';
+   edtDataCadastro.Text := '';
+   end;
+  end;
+
+
+end.

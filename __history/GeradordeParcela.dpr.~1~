@@ -1,0 +1,20 @@
+program GeradordeParcela;
+
+uses
+  Vcl.Forms,
+  Gerador_Parcela in 'Gerador_Parcela.pas' {frmMain},
+  untDmConexoes in 'E:\GeraParcela\untDmConexoes.pas' {DmConexoes: TDataModule},
+  untPesquisaEmpresa in 'E:\GeraParcela\untPesquisaEmpresa.pas' {frmEmpresa},
+  untPesquisaCliente in 'E:\GeraParcela\untPesquisaCliente.pas' {frmCliente};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TDmConexoes, DmConexoes);
+  Application.CreateForm(TfrmEmpresa, frmEmpresa);
+  Application.CreateForm(TfrmCliente, frmCliente);
+  Application.Run;
+end.

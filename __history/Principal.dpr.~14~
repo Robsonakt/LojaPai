@@ -1,0 +1,35 @@
+program Principal;
+
+uses
+  Vcl.Forms,
+  Principal_main in 'Principal_main.pas' {frmMain},
+  untCadastroProduto in 'untCadastroProduto.pas' {frmProduto},
+  untCadastroCliente in 'untCadastroCliente.pas' {frmCliente},
+  untDmConexao in 'untDmConexao.pas' {dmConexoes: TDataModule},
+  untConsultaCliente in 'untConsultaCliente.pas' {frmConsultaCliente},
+  untConsultaProdutos in 'untConsultaProdutos.pas' {frmConsultaProduto},
+  UntExibeCadastroProduto in 'UntExibeCadastroProduto.pas' {ExibeCadastroProduto},
+  UntExibeCadastroCliente in 'UntExibeCadastroCliente.pas' {frmExibeCadastroCliente},
+  UntFuncoes in 'UntFuncoes.pas',
+  Venda_Itens in 'Venda_Itens.pas' {VendaItens},
+  UntFiadoCli in 'UntFiadoCli.pas' {FiadosCli},
+  UntVendas in 'UntVendas.pas' {CaixaVendas};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmProduto, frmProduto);
+  Application.CreateForm(TfrmCliente, frmCliente);
+  Application.CreateForm(TdmConexoes, dmConexoes);
+  Application.CreateForm(TfrmConsultaCliente, frmConsultaCliente);
+  Application.CreateForm(TfrmConsultaProduto, frmConsultaProduto);
+  Application.CreateForm(TExibeCadastroProduto, ExibeCadastroProduto);
+  Application.CreateForm(TfrmExibeCadastroCliente, frmExibeCadastroCliente);
+  Application.CreateForm(TVendaItens, VendaItens);
+  Application.CreateForm(TFiadosCli, FiadosCli);
+  Application.CreateForm(TCaixaVendas, CaixaVendas);
+  Application.Run;
+end.

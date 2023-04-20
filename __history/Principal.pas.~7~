@@ -1,0 +1,49 @@
+unit Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls;
+
+type
+  TfrmPrincipal = class(TForm)
+    MainMenu1: TMainMenu;
+    Cadastro1: TMenuItem;
+    Consulta1: TMenuItem;
+    Estoque1: TMenuItem;
+    Cliente1: TMenuItem;
+    Estoque2: TMenuItem;
+    Cliente2: TMenuItem;
+    pnBot: TPanel;
+    procedure pnBotMouseLeave(Sender: TObject);
+    procedure pnBotMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+//uses
+//  untCadastroCliente,untCadastroCliente;
+
+{$R *.dfm}
+
+procedure TfrmPrincipal.pnBotMouseLeave(Sender: TObject);
+begin
+pnBot.Caption := 'Versão 1.0';
+end;
+
+procedure TfrmPrincipal.pnBotMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+ pnBot.Caption := 'Robson Project';
+end;
+
+end.

@@ -1,0 +1,97 @@
+unit untConsultaCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TfrmConsultaCliente = class(TForm)
+    Panel1: TPanel;
+    lbNomeCliente: TLabel;
+    edtPesquisaCLiente: TEdit;
+    GridCLiente: TDBGrid;
+    dsConsultaCliente: TDataSource;
+    procedure edtPesquisaCLienteChange(Sender: TObject);
+    procedure GridCLienteKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure edtPesquisaCLienteKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+      procedure LocalizaCLiente();
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+  end;
+
+var
+  frmConsultaCliente: TfrmConsultaCliente;
+
+implementation
+uses  untDmConexao,principal_main , UntExibeCadastroCliente;
+{$R *.dfm}
+
+procedure TfrmConsultaCliente.edtPesquisaCLienteChange(Sender: TObject);
+begin
+ LocalizaCLiente;
+
+end;
+
+procedure TfrmConsultaCliente.edtPesquisaCLienteKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+if (key = vk_up) or  (key = vk_down) then
+   GridCLiente.SetFocus;
+end;
+
+procedure TfrmConsultaCliente.FormCreate(Sender: TObject);
+begin
+ LocalizaCLiente ;
+end;
+
+procedure TfrmConsultaCliente.FormShow(Sender: TObject);
+begin
+ localizacliente ;
+end;
+
+procedure TfrmConsultaCliente.GridCLienteKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if key = #13 then
+   begin
+     LocalizaCodigoCli  := dmconexoes.qrCliente.FieldByName('codigo').AsString;
+     edtPesquisaCLiente.Text := '';
+     frmConsultaCliente.Close;
+
+   end;
+
+end;
+
+procedure TfrmConsultaCliente.LocalizaCLiente;
+begin
+  with dmConexoes.qrCliente do
+    begin
+      Close;
+      sql.Clear;
+      sql.Add('SELECT * FROM Cadastro WHERE (CODIGO IS NOT NULL) ');
+
+      //*** Filtrar Cliente ***//
+      if (trim(edtPesquisaCLiente.Text) <> '') then
+        begin
+          SQL.Append(' AND ((Nome LIKE :pNome) OR (Cpf LIKE :pCpf) OR (Rg LIKE :pRg) OR (Telefone LIKE :pTelefone)  ) ');
+          Parameters.ParamByName('pNome').Value      := '%'+edtPesquisaCLiente.Text+'%';
+          Parameters.ParamByName('pCpf').Value       := '%'+edtPesquisaCLiente.Text+'%';
+          Parameters.ParamByName('pTelefone').Value  := '%'+edtPesquisaCLiente.Text+'%';
+        end;
+
+      Open;
+    end;
+end;
+
+end.

@@ -1,0 +1,142 @@
+object ExibeCadastroProduto: TExibeCadastroProduto
+  Left = 0
+  Top = 0
+  Caption = 'ExibeCadastroProduto'
+  ClientHeight = 411
+  ClientWidth = 670
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LbCodProd: TLabel
+    Left = 27
+    Top = 53
+    Width = 74
+    Height = 13
+    Caption = 'Codigo Produto'
+  end
+  object Lbnomeproduto: TLabel
+    Left = 27
+    Top = 107
+    Width = 102
+    Height = 13
+    Caption = 'Descri'#231#227'o do produto'
+  end
+  object Lbdatacadastroproduto: TLabel
+    Left = 27
+    Top = 256
+    Width = 26
+    Height = 13
+    Caption = 'Data '
+  end
+  object lbQuant: TLabel
+    Left = 27
+    Top = 153
+    Width = 97
+    Height = 13
+    Caption = 'Quantidade Produto'
+  end
+  object valor: TLabel
+    Left = 27
+    Top = 199
+    Width = 80
+    Height = 13
+    Caption = 'Valor do Produto'
+  end
+  object edtCodProd: TEdit
+    Left = 27
+    Top = 72
+    Width = 47
+    Height = 21
+    TabOrder = 0
+    OnKeyDown = edtCodProdKeyDown
+    OnKeyPress = edtCodProdKeyPress
+  end
+  object edtDataProd: TMaskEdit
+    Left = 27
+    Top = 275
+    Width = 97
+    Height = 21
+    Enabled = False
+    EditMask = '99/99/9999;1;_'
+    MaxLength = 10
+    TabOrder = 1
+    Text = '  /  /    '
+  end
+  object edtNomeProd: TDBEdit
+    Left = 27
+    Top = 126
+    Width = 334
+    Height = 21
+    DataField = 'descricao'
+    DataSource = frmMain.dsProduto
+    Enabled = False
+    TabOrder = 2
+  end
+  object edtQuantidade: TDBEdit
+    Left = 27
+    Top = 172
+    Width = 49
+    Height = 21
+    DataField = 'quantidade'
+    DataSource = frmMain.dsProduto
+    Enabled = False
+    TabOrder = 3
+  end
+  object edtValorProduto: TDBEdit
+    Left = 27
+    Top = 218
+    Width = 49
+    Height = 21
+    DataField = 'valorproduto'
+    DataSource = frmMain.dsProduto
+    Enabled = False
+    TabOrder = 4
+  end
+  object btnEditaCadProd: TButton
+    Left = 8
+    Top = 378
+    Width = 75
+    Height = 25
+    Caption = 'Editar'
+    TabOrder = 5
+    Visible = False
+    OnClick = btnEditaCadProdClick
+  end
+  object btnExcluiCadProd: TButton
+    Left = 134
+    Top = 378
+    Width = 75
+    Height = 25
+    Caption = 'Excluir'
+    TabOrder = 6
+    Visible = False
+    OnClick = btnExcluiCadProdClick
+  end
+  object btnSalvar: TBitBtn
+    Left = 256
+    Top = 378
+    Width = 75
+    Height = 25
+    Caption = 'Salvar'
+    TabOrder = 7
+    Visible = False
+    OnClick = btnSalvarClick
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 288
+    Top = 312
+    Width = 232
+    Height = 25
+    DataSource = frmMain.dsProduto
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost]
+    TabOrder = 8
+  end
+end

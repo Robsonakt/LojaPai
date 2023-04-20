@@ -1,0 +1,47 @@
+unit untDmConexao;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB;
+
+type
+  TqrItensVendas = class(TDataModule)
+    conRobson: TADOConnection;
+    qrEstoque: TADOQuery;
+    qrCliente: TADOQuery;
+    vwGerarNumCliente: TADOQuery;
+    qrClientenome: TWideStringField;
+    qrClienteendereco: TWideStringField;
+    qrClientevalor: TIntegerField;
+    qrClientecpf: TStringField;
+    qrClienterg: TStringField;
+    qrClienteproduto: TWideStringField;
+    qrClientecodigo: TIntegerField;
+    qrClientetelefone: TStringField;
+    qrClientedatacadastrocliente: TDateTimeField;
+    qrClientenumeroresidencia: TIntegerField;
+    qrcomando: TADOQuery;
+    qrEstoquecodigo: TIntegerField;
+    qrEstoquequantidade: TIntegerField;
+    qrEstoquedescricao: TWideStringField;
+    qrEstoquedata: TDateTimeField;
+    qrEstoquevalorproduto: TWideStringField;
+    qrVendas: TADOQuery;
+    qrItensVenda: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  qrItensVendas: TqrItensVendas;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
