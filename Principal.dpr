@@ -11,9 +11,9 @@ uses
   UntExibeCadastroProduto in 'UntExibeCadastroProduto.pas' {ExibeCadastroProduto},
   UntExibeCadastroCliente in 'UntExibeCadastroCliente.pas' {frmExibeCadastroCliente},
   UntFuncoes in 'UntFuncoes.pas',
-  Venda_Itens in 'Venda_Itens.pas' {VendaItens},
+  Venda_Itens in 'Venda_Itens.pas' {frmVendaItens},
   UntFiadoCli in 'UntFiadoCli.pas' {FiadosCli},
-  UntVendas in 'UntVendas.pas' {CaixaVendas};
+  UntVendas in 'UntVendas.pas' {frmCaixaVendas};
 
 {$R *.res}
 
@@ -28,8 +28,8 @@ begin
   Application.CreateForm(TfrmConsultaCliente, frmConsultaCliente);
   Application.CreateForm(TExibeCadastroProduto, ExibeCadastroProduto);
   Application.CreateForm(TfrmExibeCadastroCliente, frmExibeCadastroCliente);
-  Application.CreateForm(TVendaItens, VendaItens);
+  Application.CreateForm(TfrmVendaItens, frmVendaItens);
   Application.CreateForm(TFiadosCli, FiadosCli);
-  Application.CreateForm(TCaixaVendas, FrmCaixaVendas);
+  Application.CreateForm(TFrmCaixaVendas, FrmCaixaVendas);
   Application.Run;
 end.

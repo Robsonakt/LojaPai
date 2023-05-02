@@ -1,0 +1,107 @@
+object frmConsultaCliente: TfrmConsultaCliente
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Consulta Cliente'
+  ClientHeight = 433
+  ClientWidth = 798
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 383
+    Width = 798
+    Height = 50
+    Align = alBottom
+    TabOrder = 0
+    object lbNomeCliente: TLabel
+      Left = 16
+      Top = 7
+      Width = 63
+      Height = 13
+      Caption = 'Nome Cliente'
+    end
+    object edtPesquisaCLiente: TEdit
+      Left = 14
+      Top = 23
+      Width = 390
+      Height = 21
+      TabOrder = 0
+      OnChange = edtPesquisaCLienteChange
+      OnKeyDown = edtPesquisaCLienteKeyDown
+    end
+  end
+  object GridCLiente: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 798
+    Height = 383
+    Align = alClient
+    DataSource = dsConsultaCliente
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = [fsBold]
+    OnKeyPress = GridCLienteKeyPress
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'codigo'
+        ImeName = 'Codigo'
+        Title.Caption = 'C'#243'digo'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cpf'
+        Title.Caption = 'CPF'
+        Width = 196
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'telefone'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'endereco'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'datacadastrocliente'
+        Visible = True
+      end>
+  end
+  object dsConsultaCliente: TDataSource
+    DataSet = dmconexoes.qrCliente
+    Left = 352
+    Top = 97
+  end
+end

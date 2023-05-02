@@ -20,6 +20,7 @@ type
     procedure LocalizaProduto();
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure edtPesquisaProdutoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,6 +37,11 @@ uses  untDmConexao,principal_main , UntExibeCadastroProduto;
 
 {$R *.dfm}
 
+
+procedure TfrmConsultaProduto.edtPesquisaProdutoChange(Sender: TObject);
+begin
+LocalizaProduto;
+end;
 
 procedure TfrmConsultaProduto.edtPesquisaProdutoKeyDown(Sender: TObject;
   var Key: Word; Shift: TShiftState);

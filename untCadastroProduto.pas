@@ -19,6 +19,8 @@ type
     btnSalvar: TButton;
     lbvalorproduto: TLabel;
     edtValorProduto: TEdit;
+    edtTipo: TEdit;
+    lbTipo: TLabel;
     procedure edtCodProdKeyPress(Sender: TObject; var Key: Char);
     procedure edtQuantProdKeyPress(Sender: TObject; var Key: Char);
     procedure edtDescricaoProdKeyPress(Sender: TObject; var Key: Char);

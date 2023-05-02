@@ -1,8 +1,9 @@
 ﻿object dmconexoes: Tdmconexoes
   OldCreateOrder = False
-  Height = 341
+  Height = 335
   Width = 701
   object conRobson: TADOConnection
+    Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=@66E$Y$;Persist Security Info=True;' +
       'User ID=sa;Initial Catalog=ROBSON;Data Source=DEV3;Use Procedure' +
@@ -11,7 +12,7 @@
       'when possible=False'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
-    Left = 288
+    Left = 296
     Top = 16
   end
   object qrEstoque: TADOQuery
@@ -112,31 +113,43 @@
     Top = 96
   end
   object qrVendas: TADOQuery
+    Active = True
     Connection = conRobson
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from Vendas')
+      'SELECT * FROM [ROBSON].[dbo].[Vendas]')
     Left = 37
     Top = 160
-    object qrVendasCodVenda: TIntegerField
-      FieldName = 'CodVenda'
-    end
     object qrVendasCodCli: TIntegerField
       FieldName = 'CodCli'
+    end
+    object qrVendasData: TWideStringField
+      FieldName = 'Data'
+      FixedChar = True
+      Size = 10
     end
     object qrVendasValorTotal: TBCDField
       FieldName = 'ValorTotal'
       Precision = 10
       Size = 2
     end
-    object qrVendasDataVenda: TDateTimeField
-      FieldName = 'DataVenda'
+    object qrVendasValorRestante: TBCDField
+      FieldName = 'ValorRestante'
+      Precision = 10
+      Size = 2
     end
     object qrVendasValorPago: TBCDField
       FieldName = 'ValorPago'
       Precision = 10
       Size = 2
+    end
+    object qrVendasDataVenda: TDateTimeField
+      FieldName = 'DataVenda'
+    end
+    object qrVendasCodVenda: TAutoIncField
+      FieldName = 'CodVenda'
+      ReadOnly = True
     end
   end
   object qrItensVenda: TADOQuery

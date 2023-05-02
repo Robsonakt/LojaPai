@@ -52,6 +52,14 @@ object frmProduto: TfrmProduto
     Height = 13
     Caption = 'Valor Produto'
   end
+  object lbTipo: TLabel
+    Left = 152
+    Top = 157
+    Width = 20
+    Height = 13
+    Caption = 'Tipo'
+    Visible = False
+  end
   object edtCodProd: TEdit
     Left = 32
     Top = 72
@@ -104,5 +112,13 @@ object frmProduto: TfrmProduto
     Height = 21
     TabOrder = 5
     OnKeyPress = edtValorProdutoKeyPress
+  end
+  object edtTipo: TEdit
+    Left = 152
+    Top = 176
+    Width = 33
+    Height = 23
+    TabOrder = 6
+    Visible = False
   end
 end

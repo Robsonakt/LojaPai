@@ -25,8 +25,6 @@ object frmConsultaProduto: TfrmConsultaProduto
     Height = 50
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 358
-    ExplicitWidth = 748
     object lbConsultaProduto: TLabel
       Left = 16
       Top = 7
@@ -40,6 +38,7 @@ object frmConsultaProduto: TfrmConsultaProduto
       Width = 390
       Height = 21
       TabOrder = 0
+      OnChange = edtPesquisaProdutoChange
       OnKeyDown = edtPesquisaProdutoKeyDown
     end
   end

@@ -97,9 +97,18 @@ end;
 
 procedure TfrmMain.ConsultaClick(Sender: TObject);
 begin
-      Application.CreateForm(TVendaItens,VendaItens);
-      VendaItens.ShowModal;
-      VendaItens.Free;
+         Application.CreateForm(TfrmVendaItens,frmVendaItens);
+      frmVendaItens.ShowModal;
+      begin
+
+      with dmconexoes do
+
+      qrVendas.Active :=  true ;
+
+
+    end;
+
+
 end;
 
 procedure TfrmMain.Estoque1Click(Sender: TObject);
@@ -128,6 +137,7 @@ procedure TfrmMain.VendaClick(Sender: TObject);
 begin
   Application.CreateForm(TfrmProduto,frmProduto);
           FrmCaixaVendas.showmodal;
+
 
 end;
 

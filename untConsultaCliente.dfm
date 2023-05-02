@@ -25,8 +25,6 @@ object frmConsultaCliente: TfrmConsultaCliente
     Height = 50
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 373
-    ExplicitWidth = 788
     object lbNomeCliente: TLabel
       Left = 16
       Top = 7
@@ -98,6 +96,7 @@ object frmConsultaCliente: TfrmConsultaCliente
       item
         Expanded = False
         FieldName = 'datacadastrocliente'
+        Width = 64
         Visible = True
       end>
   end

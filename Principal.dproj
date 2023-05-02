@@ -132,7 +132,7 @@
         </DCCReference>
         <DCCReference Include="UntFuncoes.pas"/>
         <DCCReference Include="Venda_Itens.pas">
-            <Form>VendaItens</Form>
+            <Form>frmVendaItens</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UntFiadoCli.pas">
@@ -140,7 +140,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UntVendas.pas">
-            <Form>CaixaVendas</Form>
+            <Form>frmCaixaVendas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

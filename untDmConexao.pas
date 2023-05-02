@@ -24,9 +24,6 @@ type
     qrcomando: TADOQuery;
     qrVendas: TADOQuery;
     qrItensVenda: TADOQuery;
-    qrVendasCodVenda: TIntegerField;
-    qrVendasCodCli: TIntegerField;
-    qrVendasValorTotal: TBCDField;
     qrItensVendaCodigo: TIntegerField;
     qrItensVendaCodItem: TIntegerField;
     qrItensVendaCodVenda: TIntegerField;
@@ -39,8 +36,13 @@ type
     qrEstoquedata: TDateTimeField;
     qrEstoquevalorproduto: TBCDField;
     qrClientevalorfiado: TBCDField;
-    qrVendasDataVenda: TDateTimeField;
+    qrVendasCodCli: TIntegerField;
+    qrVendasData: TWideStringField;
+    qrVendasValorTotal: TBCDField;
+    qrVendasValorRestante: TBCDField;
     qrVendasValorPago: TBCDField;
+    qrVendasDataVenda: TDateTimeField;
+    qrVendasCodVenda: TAutoIncField;
   private
     { Private declarations }
   public

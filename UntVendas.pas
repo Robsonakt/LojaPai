@@ -11,7 +11,7 @@ uses
   FireDAC.Comp.Client, Vcl.Imaging.pngimage;
 
 type
-  TCaixaVendas = class(TForm)
+  TfrmCaixaVendas = class(TForm)
     pnbotvenda: TPanel;
     Panel1: TPanel;
     Panel3: TPanel;
@@ -43,6 +43,8 @@ type
     edtDataVenda: TMaskEdit;
     lbDataVenda: TLabel;
     Image1: TImage;
+    edtQuantRest: TDBEdit;
+    lbQuantRest: TLabel;
     procedure EdtNameClienteKeyPress(Sender: TObject; var Key: Char);
     procedure EdtNameClienteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -59,6 +61,8 @@ type
     procedure btnVendaClick(Sender: TObject);
     procedure edtDataVendaKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
+    procedure EdtNameClienteExit(Sender: TObject);
+    procedure VerificaCliente ;
   private
     { Private declarations }
   public
@@ -66,7 +70,10 @@ type
   end;
 
 var
-  FrmCaixaVendas: TCaixaVendas;
+  FrmCaixaVendas: TfrmCaixaVendas;
+
+  quantidade: Integer ;
+
 
   totalvalor: Currency ;
 
@@ -78,38 +85,61 @@ uses untDmConexao, Principal_main, untCadastroCliente, untCadastroProduto,
   untConsultaCliente, untConsultaProdutos, UntExibeCadastroCliente,
   UntExibeCadastroProduto, UntFiadoCli, UntFuncoes, Venda_Itens;
 
-procedure TCaixaVendas.btnConfirmaClick(Sender: TObject);
+procedure TfrmCaixaVendas.btnConfirmaClick(Sender: TObject);
 begin
+
+   with dmconexoes do
+
     begin
 
-      fdProduto.Active := true
+     //quantidade := qrEstoque.FieldByName('quantidade').AsInteger - StrToInt(edtQuant.text); // subtrai quantidade
+
+     if (qrEstoque.FieldByName('quantidade').AsInteger - StrToInt(edtQuant.text)) <=0   then
+
+      if application.MessageBox('Você ficara sem estoque deste produto','Atenção  ',MB_YESNO+MB_ICONINFORMATION)=6 then
+      begin
+          fdProduto.Active := true ;
+          fdproduto.Insert;
+          fdproduto.fieldbyname('valorUni').asstring                                := edtValorProd.Text;
+          fdproduto.fieldbyname('Quantidade').asstring                              := edtQuant.Text;
+          fdproduto.fieldbyname('ValorTotal').value                                 := edtValorTotal.Text;
+          fdproduto.Post;
+
+          Totalvalor := Totalvalor + StrToCurr(edtValorTotal.text);
+          lbvalorDinheiro.Caption := FormatFloat('R$ 0.00',Totalvalor);        // colocando formatação direto na variavel
+
+      end
+
+ else
+       begin
+             application.MessageBox('Venda  de produto Cancelada','Atenção  ',MB_OK+MB_ICONINFORMATION);
+             edtCodProd.SetFocus;
+       end;
 
     end;
-  fdproduto.Insert;
-  fdproduto.fieldbyname('valorUni').asstring                                := edtValorProd.Text;
-  fdproduto.fieldbyname('Quantidade').asstring                              := edtQuant.Text;
-  fdproduto.fieldbyname('ValorTotal').asstring                              := edtValorTotal.Text;
-  fdproduto.Post;
 
-
-  Totalvalor := Totalvalor + StrToCurr(edtValorTotal.text);
-  lbvalorDinheiro.Caption := FormatFloat('R$ 0.00',Totalvalor);        // colocando formatação direto na variavel
 
 end;
 
-procedure TCaixaVendas.BtnFiadoClick(Sender: TObject);
+procedure TfrmCaixaVendas.BtnFiadoClick(Sender: TObject);
 var soma : Currency ;
 begin
+
       with dmconexoes do
   begin
+
+     begin
+     quantidade := qrEstoque.FieldByName('quantidade').AsInteger - StrToInt(edtQuant.text); // subtrai quantidade
+     qrEstoque.Edit;
+     qrEstoque.FieldByName('quantidade').Value   :=  quantidade ;
+     qrEstoque.post;
+
       qrCliente.Close;
       qrCliente.SQL.clear;
       qrCliente.sql.Add('SELECT * FROM [ROBSON].[dbo].[Cadastro] where codigo = :pcod');
       qrCliente.Parameters.ParamByName('pcod').Value := EdtNameCliente.Text ;
       qrCliente.open;
       qrCliente.First;
-
-
 
 
       if not  qrCliente.IsEmpty then
@@ -123,12 +153,14 @@ begin
         qrCliente.post;
 
 
+
+      end
+
+
+
       end;
 
-
-
-
-      application.MessageBox('Venda Feita','Venda  ',mb_ok+MB_ICONINFORMATION);
+     application.MessageBox('Venda Feita','Venda  ',mb_ok+MB_ICONINFORMATION);
 
       EdtNameCliente.clear;
       edtCodProd.Clear;
@@ -139,6 +171,7 @@ begin
       lbvalorDinheiro.Caption := '';
       lbNomeCli.caption  := '';
       lbNomeProd.caption := '';
+      totalvalor := 0;
 
 
       edtNameCliente.SetFocus;
@@ -150,7 +183,7 @@ begin
 
 end;
 
-procedure TCaixaVendas.btnVendaClick(Sender: TObject);
+procedure TfrmCaixaVendas.btnVendaClick(Sender: TObject);
 
 
 begin
@@ -173,16 +206,27 @@ begin
       qrItensVenda.open;
       qrItensVenda.First;
 
+       begin
+
+
+         quantidade := qrEstoque.FieldByName('quantidade').AsInteger - StrToInt(edtQuant.text); //q subtrai quantidade
+         qrEstoque.Edit;
+         qrEstoque.FieldByName('quantidade').Value   :=  quantidade ;
+         qrEstoque.post;
+
+        end;
 
 
 
 
            qrVendas.Insert;
-            qrVendas.FieldByName('CodVenda').AsString                              := qrVendas.fieldbyname('Codvenda').AsString;
-            qrVendas.FieldByName('ValorTotal').AsString                            := Trim(fdProduto.fieldbyname('ValorTotal').asstring);
+  //          qrVendas.FieldByName('CodVenda').AsString                              := qrVendas.fieldbyname('Codvenda').AsString;
+            qrVendas.FieldByName('ValorTotal').value                               := (lbvalorDinheiro.Caption);
             qrVendas.FieldByName('CodCli').asstring                                := Trim(EdtNameCliente.Text);
             qrVendas.FieldByName('DataVenda').AsDateTime                           := StrToDateTime(edtDataVenda.Text);
             qrVendas.post;
+            qrvendas.sql.clear;
+            qrVendas.close;
 
 
 
@@ -202,6 +246,8 @@ begin
       lbvalorDinheiro.Caption := '';
       lbNomeCli.caption  := '';
       lbNomeProd.caption := '';
+      totalvalor := 0;
+
 
 
       edtNameCliente.SetFocus;
@@ -216,7 +262,7 @@ begin
 
 end;
 
-procedure TCaixaVendas.DBGrid1KeyDown(Sender: TObject; var Key: Word;
+procedure TfrmCaixaVendas.DBGrid1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Key = VK_DELETE then
@@ -228,7 +274,7 @@ begin
   end;
 end;
 
-procedure TCaixaVendas.edtCodProdKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmCaixaVendas.edtCodProdKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if key = vk_f2 then
@@ -236,24 +282,30 @@ begin
 
       frmConsultaProduto.ShowModal;
 
-      edtCodProd.text :=  LocalizaCodigoCli;
+      edtCodProd.text :=  LocalizaCodProduto;
       edtCodProdKeyPress(self,keyEnter);
 
 
       end;
 end;
 
-procedure TCaixaVendas.edtCodProdKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmCaixaVendas.edtCodProdKeyPress(Sender: TObject; var Key: Char);
 begin
        if key = #13 then
      begin
      with dmconexoes do
      begin
-       qrcliente.Close  ;
-       qrcliente.SQL.Clear;
-       qrcliente.SQL.Add('SELECT * FROM CADASTRO WHERE CODIGO = :pcod')  ;
-       qrcliente.Parameters.ParamByName('pcod').Value :=  edtCodProd.Text ;
-       qrcliente.Open;
+     try
+       qrEstoque.Close  ;
+       qrEstoque.SQL.Clear;
+       qrEstoque.SQL.Add('SELECT * FROM PRODUTO WHERE CODIGO = :pcod')  ;
+       qrEstoque.Parameters.ParamByName('pcod').Value :=  StrToInt(edtCodProd.Text) ;
+       qrEstoque.Open;
+     Except
+          on e:exception do
+          Application.MessageBox(pchar('Erro select Produto'+#13+e.Message),'',MB_OK) ;
+
+     end;
 
                            lbNomeProd.Caption := qrEstoque.FieldByName('descricao').AsString;
 
@@ -265,7 +317,7 @@ begin
       edtQuant.SetFocus;
 end;
 
-procedure TCaixaVendas.edtDataVendaKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmCaixaVendas.edtDataVendaKeyPress(Sender: TObject; var Key: Char);
 begin
       if Key = #32 then
  begin
@@ -274,14 +326,20 @@ begin
  end;
 end;
 
-procedure TCaixaVendas.EdtNameClienteChange(Sender: TObject);
+procedure TfrmCaixaVendas.EdtNameClienteChange(Sender: TObject);
 begin
 
       edtValorProd.Clear;
+      edtQuantRest.Clear;
 
 end;
 
-procedure TCaixaVendas.EdtNameClienteKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmCaixaVendas.EdtNameClienteExit(Sender: TObject);
+begin
+ VerificaCliente;
+end;
+
+procedure TfrmCaixaVendas.EdtNameClienteKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
 
@@ -300,51 +358,76 @@ with dmconexoes do
 
 end;
 
-procedure TCaixaVendas.EdtNameClienteKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmCaixaVendas.EdtNameClienteKeyPress(Sender: TObject; var Key: Char);
 begin
+
      if key = #13 then
      begin
-     with dmconexoes do
-     begin
-       qrcliente.Close  ;
-       qrcliente.SQL.Clear;
-       qrcliente.SQL.Add('SELECT * FROM CADASTRO WHERE CODIGO = :pcod')  ;
-       qrcliente.Parameters.ParamByName('pcod').Value :=  EdtNameCliente.Text ;
-       qrcliente.Open;
-
-        lbNomeCli.Caption := qrCliente.FieldByName('nome').AsString ; //exibe noem que esta na label
-
+       VerificaCliente;
       end;
-      end;
-
-      if Key = #13 then
-      edtDataVenda.SetFocus;
 end;
 
 
-procedure TCaixaVendas.edtQuantKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmCaixaVendas.edtQuantKeyPress(Sender: TObject; var Key: Char);
 begin
   if key = #13 then
   begin
+                                //floattostr(strtofloat(edtValorProd.Text)   StrToCurr(copy(edtValorProd.Caption,3,10))
+
     edtValorTotal.Text :=  floattostr(strtofloat(edtValorProd.Text) * strtofloat(edtQuant.Text));        //calculo de multiplicação
     edtValorTotal.SetFocus;
+
   end;
-
-
-
-
 end;
 
-procedure TCaixaVendas.edtValorTotalKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmCaixaVendas.edtValorTotalKeyPress(Sender: TObject; var Key: Char);
 begin
  if key = #13 then
   btnConfirma.SetFocus;
 end;
 
-procedure TCaixaVendas.FormShow(Sender: TObject);
+procedure TfrmCaixaVendas.FormShow(Sender: TObject);
 begin
   pnbotvenda.Color := color_01;
   pnbotvenda.Font.Color := color_02;
+
+  EdtNameCliente.SetFocus ;
+
+
+end;
+
+procedure TfrmCaixaVendas.VerificaCliente;
+begin
+ with DmConexoes do
+ begin
+  qrcomando.Close;
+  qrcomando.SQL.Clear;
+  qrcomando.SQL.Add('select * from cadastro where codigo = :pcod');
+  qrcomando.Parameters.ParamByName('pcod').Value                                 := EdtNameCliente.Text;
+  qrcomando.Open;
+
+  if  qrcomando.IsEmpty  then
+
+  begin
+
+    Application.MessageBox('Cliente não encontrado','Atenção',MB_OK+MB_ICONERROR);
+    EdtNameCliente.SetFocus;
+
+  end
+
+   Else
+
+   begin
+   lbNomeCli.Caption := qrCliente.FieldByName('nome').AsString ;
+   edtDataVenda.SetFocus;
+
+   end;
+
+
+
+
+ end;
+
 end;
 
 end.
