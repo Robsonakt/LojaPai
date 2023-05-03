@@ -71,15 +71,6 @@ end;
 
 procedure TExibeCadastroProduto.btnSalvarClick(Sender: TObject);
 begin
-//  with dmconexoes do
-// begin
-//      qrEstoque.Append;
-//      qrEstoque.fieldbyname('quantidade').asinteger                       := strtoint(edtQuantidade.text);
-//      qrEstoque.fieldbyname('descricao').asstring                         := trim(edtNomeProd.text);
-//      qrEstoque.FieldByName('data').AsDateTime                            := StrToDateTime(edtDataProd.Text);
-//      qrEstoque.FieldByName('valorproduto').Asstring                      := trim(edtValorProduto.Text);
-//      qrEstoque.post;
-// end;
 
   with dmconexoes do
   begin

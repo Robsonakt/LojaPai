@@ -87,12 +87,9 @@ end;
 
 procedure TfrmMain.Cliente2Click(Sender: TObject);
 begin
-
-          // Application.CreateForm(TfrmProduto,frmProduto);
-           frmExibeCadastroCliente.showmodal;
-          // frmProduto.Free;
-
-
+  // Application.CreateForm(TfrmProduto,frmProduto);
+   frmExibeCadastroCliente.showmodal;
+  // frmProduto.Free;
 end;
 
 procedure TfrmMain.ConsultaClick(Sender: TObject);

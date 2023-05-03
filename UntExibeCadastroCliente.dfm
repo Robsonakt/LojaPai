@@ -39,8 +39,8 @@ object frmExibeCadastroCliente: TfrmExibeCadastroCliente
     Caption = 'Data Cadastro Cliente'
   end
   object lbCpfCliente: TLabel
-    Left = 368
-    Top = 67
+    Left = 409
+    Top = 61
     Width = 22
     Height = 13
     Caption = 'CPF '
@@ -100,72 +100,22 @@ object frmExibeCadastroCliente: TfrmExibeCadastroCliente
     TabOrder = 1
     Text = '  /  /    '
   end
-  object edtNomeCli: TDBEdit
-    Left = 17
-    Top = 86
-    Width = 288
-    Height = 21
-    DataField = 'nome'
-    DataSource = frmConsultaCliente.dsConsultaCliente
-    Enabled = False
-    TabOrder = 2
-  end
-  object edtCpf: TDBEdit
-    Left = 368
-    Top = 86
-    Width = 217
-    Height = 21
-    DataField = 'cpf'
-    DataSource = frmConsultaCliente.dsConsultaCliente
-    Enabled = False
-    TabOrder = 3
-  end
-  object edtEndereco: TDBEdit
-    Left = 17
-    Top = 146
-    Width = 331
-    Height = 21
-    DataField = 'endereco'
-    DataSource = frmConsultaCliente.dsConsultaCliente
-    Enabled = False
-    TabOrder = 4
-  end
-  object edtNumResidencia: TDBEdit
-    Left = 410
-    Top = 146
-    Width = 34
-    Height = 21
-    DataField = 'numeroresidencia'
-    DataSource = frmConsultaCliente.dsConsultaCliente
-    Enabled = False
-    TabOrder = 5
-  end
-  object edtTelefone: TDBEdit
-    Left = 17
-    Top = 206
-    Width = 97
-    Height = 21
-    DataField = 'telefone'
-    DataSource = frmConsultaCliente.dsConsultaCliente
-    Enabled = False
-    TabOrder = 6
-  end
   object btneditar: TButton
-    Left = 230
+    Left = 166
     Top = 350
     Width = 75
     Height = 25
     Caption = 'Editar'
-    TabOrder = 7
+    TabOrder = 2
     OnClick = btneditarClick
   end
   object bntExcluir: TButton
-    Left = 347
+    Left = 247
     Top = 350
     Width = 75
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 8
+    TabOrder = 3
     OnClick = bntExcluirClick
   end
   object edtfiadotest: TDBEdit
@@ -176,15 +126,15 @@ object frmExibeCadastroCliente: TfrmExibeCadastroCliente
     DataField = 'valorfiado'
     DataSource = frmConsultaCliente.dsConsultaCliente
     Enabled = False
-    TabOrder = 9
+    TabOrder = 4
   end
   object bntPago: TButton
-    Left = 448
+    Left = 409
     Top = 350
     Width = 75
     Height = 25
     Caption = 'Pago'
-    TabOrder = 10
+    TabOrder = 5
     OnClick = bntPagoClick
   end
   object edtPago: TEdit
@@ -192,6 +142,55 @@ object frmExibeCadastroCliente: TfrmExibeCadastroCliente
     Top = 312
     Width = 121
     Height = 21
+    TabOrder = 6
+  end
+  object edtTel: TEdit
+    Left = 17
+    Top = 206
+    Width = 120
+    Height = 21
+    Enabled = False
+    TabOrder = 7
+  end
+  object edtEnd: TEdit
+    Left = 19
+    Top = 146
+    Width = 331
+    Height = 21
+    Enabled = False
+    TabOrder = 8
+  end
+  object edtNumCasa: TEdit
+    Left = 409
+    Top = 146
+    Width = 34
+    Height = 21
+    Enabled = False
+    TabOrder = 9
+  end
+  object edtCpfCli: TEdit
+    Left = 410
+    Top = 80
+    Width = 217
+    Height = 21
+    Enabled = False
+    TabOrder = 10
+  end
+  object btnSalvar: TBitBtn
+    Left = 328
+    Top = 350
+    Width = 75
+    Height = 25
+    Caption = 'Salvar'
     TabOrder = 11
+    OnClick = btnSalvarClick
+  end
+  object edtNomeCliente: TEdit
+    Left = 19
+    Top = 86
+    Width = 331
+    Height = 21
+    Enabled = False
+    TabOrder = 12
   end
 end

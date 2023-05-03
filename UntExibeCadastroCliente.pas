@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.StdCtrls, Vcl.DBCtrls,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, Data.DB, Vcl.Buttons;
 
 type
   TfrmExibeCadastroCliente = class(TForm)
@@ -18,11 +18,6 @@ type
     lbNumeroTelefone: TLabel;
     edtCodCli: TEdit;
     edtDataCadastro: TMaskEdit;
-    edtNomeCli: TDBEdit;
-    edtCpf: TDBEdit;
-    edtEndereco: TDBEdit;
-    edtNumResidencia: TDBEdit;
-    edtTelefone: TDBEdit;
     btneditar: TButton;
     bntExcluir: TButton;
     lbSaldDeve: TLabel;
@@ -30,6 +25,12 @@ type
     bntPago: TButton;
     edtPago: TEdit;
     lbPago: TLabel;
+    edtTel: TEdit;
+    edtEnd: TEdit;
+    edtNumCasa: TEdit;
+    edtCpfCli: TEdit;
+    btnSalvar: TBitBtn;
+    edtNomeCliente: TEdit;
     procedure edtCodCliKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edtCodCliKeyPress(Sender: TObject; var Key: Char);
@@ -38,6 +39,7 @@ type
     procedure bntExcluirClick(Sender: TObject);
     procedure btneditarClick(Sender: TObject);
     procedure bntPagoClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,6 +73,13 @@ begin
        qrcliente.ExecSQL;
 
        edtDataCadastro.clear;
+       edtfiadotest.Clear;
+       edtPago.Clear;
+       edtfiadotest.Clear;
+       edtTel.Clear;
+       edtNumCasa.Clear;
+       edtNomeCliente.Clear;
+
        end;
        end;
 
@@ -101,11 +110,39 @@ end;
 
 procedure TfrmExibeCadastroCliente.btneditarClick(Sender: TObject);
 begin
-edtNomeCli.Enabled := true ;
-edtEndereco.Enabled := true ;
-edtNumResidencia.Enabled := true ;
-edtTelefone.Enabled := true ;
-edtCpf.Enabled := true ;
+  edtNomeCliente.Enabled      := true ;
+  edtEnd.Enabled              := true ;
+  edtNumCasa.Enabled          := true ;
+  edtTel.Enabled              := true ;
+  edtCpfCli.Enabled           := true ;
+end;
+
+procedure TfrmExibeCadastroCliente.btnSalvarClick(Sender: TObject);
+begin
+  with dmconexoes do
+  begin
+  qrCliente.Close  ;
+  qrCliente.SQL.Clear;
+  qrCliente.SQL.text := 'UPDATE  Cadastro SET  nome = :PNome, cpf =  :PCPF, endereco = :PEnd, telefone = :PTel, numeroresidencia = :PNumC  WHERE CODIGO = :pcod';
+  qrCliente.Parameters.ParamByName('PNome').Value     :=  edtNomeCliente.Text ;
+  qrCliente.Parameters.ParamByName('PCPF').Value      :=  edtCpfCli.Text ;
+  qrCliente.Parameters.ParamByName('PEnd').Value      :=  edtEnd.Text ;
+  qrCliente.Parameters.ParamByName('pTel').Value      :=  edtTel.Text ;
+  qrCliente.Parameters.ParamByName('pNumC').Value     :=  edtNumCasa.Text ;
+  qrCliente.Parameters.ParamByName('pcod').Value      :=  edtCodCli.Text ;
+  qrCliente.ExecSQL;
+
+   Application.MessageBox('Cliente Gravado com Sucesso!!','Aviso',mb_ok+MB_ICONINFORMATION) ;
+   btneditar.Enabled := true ;
+
+   edtNomeCliente.Enabled           := not edtNomeCliente.Enabled ;
+   edtCpfCli.Enabled                := not edtCpfCli.Enabled ;
+   edtEnd.Enabled                   := not edtEnd.Enabled ;
+   edtTel.Enabled                   := not edtTel.Enabled ;
+   edtNumCasa.Enabled               := not edtNumCasa.Enabled ;
+
+  end;
+
 end;
 
 procedure TfrmExibeCadastroCliente.edtCodCliKeyDown(Sender: TObject;
@@ -124,10 +161,6 @@ with dmconexoes do
 
       end;
 
-
-
-
-
 end;
 
 procedure TfrmExibeCadastroCliente.edtCodCliKeyPress(Sender: TObject;
@@ -143,10 +176,16 @@ begin
        qrcliente.Parameters.ParamByName('pcod').Value :=  edtcodCli.Text ;
        qrcliente.Open;
 
-       edtDataCadastro.Text := FormatDateTime('dd/mm/yyyy',qrcliente.FieldByName('datacadastrocliente').AsDateTime)
+       edtDataCadastro.Text     :=  FormatDateTime('dd/mm/yyyy',qrcliente.FieldByName('datacadastrocliente').AsDateTime) ;
+       edtNoMeCliente.Text      :=  qrCliente.FieldByName('nome').AsString;
+       edtCpfCli.Text           :=  qrCliente.FieldByName('cpf').AsString;
+       edtEnd.Text              :=  qrCliente.FieldByName('endereco').AsString;
+       edtTel.Text              :=  qrCliente.FieldByName('telefone').AsString;
+       edtNumCasa.Text          :=  qrCliente.FieldByName('numeroresidencia').AsString;
 
       end;
       end;
+
 
 end;
 
