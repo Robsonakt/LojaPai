@@ -762,6 +762,32 @@ object frmCaixaVendas: TfrmCaixaVendas
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
       OnKeyDown = DBGrid1KeyDown
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'Quantidade'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ValorUni'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ValorTotal'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CodVenda'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CodCli'
+          Visible = True
+        end>
     end
     object edtQuant: TEdit
       Left = 222
@@ -856,6 +882,7 @@ object frmCaixaVendas: TfrmCaixaVendas
   object fdProduto: TFDMemTable
     FieldDefs = <>
     IndexDefs = <>
+    DetailFields = 'CodCli;CodVenda;Quantidade;ValorTotal;ValorUni'
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
     ResourceOptions.AssignedValues = [rvSilentMode]

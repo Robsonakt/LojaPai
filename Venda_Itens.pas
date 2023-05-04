@@ -16,6 +16,7 @@ type
     pnInferior: TPanel;
     dbProdutos: TDBGrid;
     dsVenda: TDataSource;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,4 +37,19 @@ uses Principal_main, untCadastroCliente, untCadastroProduto, untConsultaCliente,
 
 
 
-  end.
+  procedure TfrmVendaItens.FormShow(Sender: TObject);
+begin
+  with dmconexoes do
+
+  begin
+    qrVendas.Close;
+    qrVendas.sql.clear;
+    qrVendas.SQL.Add('select * from vendas order by datavenda desc') ;
+    qrvendas.Open;
+
+  end;
+
+
+end;
+
+end.

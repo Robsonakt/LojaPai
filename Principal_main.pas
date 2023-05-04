@@ -96,15 +96,6 @@ procedure TfrmMain.ConsultaClick(Sender: TObject);
 begin
          Application.CreateForm(TfrmVendaItens,frmVendaItens);
       frmVendaItens.ShowModal;
-      begin
-
-      with dmconexoes do
-
-      qrVendas.Active :=  true ;
-
-
-    end;
-
 
 end;
 

@@ -96,7 +96,7 @@ begin
 
      if (qrEstoque.FieldByName('quantidade').AsInteger - StrToInt(edtQuant.text)) <=0   then
 
-      if application.MessageBox('Você ficara sem estoque deste produto','Atenção  ',MB_YESNO+MB_ICONINFORMATION)=6 then
+      if application.MessageBox('Você ficara sem estoque deste produto, Deseja continuar a venda ?','Atenção  ',MB_YESNO+MB_ICONINFORMATION)=6 then
       begin
           fdProduto.Active := true ;
           fdproduto.Insert;
@@ -116,6 +116,26 @@ begin
              edtCodProd.SetFocus;
        end;
 
+    end;
+
+    with dmconexoes do
+
+    quantidade := qrEstoque.FieldByName('quantidade').AsInteger - StrToInt(edtQuant.text);
+
+    begin
+      begin
+
+          fdProduto.Active := true ;
+          fdproduto.Insert;
+          fdproduto.fieldbyname('valorUni').asstring                                := edtValorProd.Text;
+          fdproduto.fieldbyname('Quantidade').asstring                              := edtQuant.Text;
+          fdproduto.fieldbyname('ValorTotal').value                                 := edtValorTotal.Text;
+          fdproduto.Post;
+
+          Totalvalor := Totalvalor + StrToCurr(edtValorTotal.text);
+          lbvalorDinheiro.Caption := FormatFloat('R$ 0.00',Totalvalor);        // colocando formatação direto na variavel
+
+      end ;
     end;
 
 

@@ -113,7 +113,6 @@
     Top = 96
   end
   object qrVendas: TADOQuery
-    Active = True
     Connection = conRobson
     CursorType = ctStatic
     Parameters = <>
