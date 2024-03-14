@@ -1,0 +1,34 @@
+unit UntRelatorioProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport;
+
+type
+  TfrmRelatorio = class(TForm)
+    rlr_RelatorioProdutos: TRLReport;
+    RLBand_Cabecalho: TRLBand;
+    RLBand_Titulo: TRLBand;
+    RLBand_Colunas: TRLBand;
+    RLBand_Detalhes: TRLBand;
+    RLBand_Rodape: TRLBand;
+    RLSystemInfo1: TRLSystemInfo;
+    RLLabel_Cabecalho: TRLLabel;
+    RLSystemInfo2: TRLSystemInfo;
+    RLLabel_Titulo: TRLLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelatorio: TfrmRelatorio;
+
+implementation
+
+{$R *.dfm}
+
+end.

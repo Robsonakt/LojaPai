@@ -22,6 +22,7 @@ type
     edtValorProduto: TEdit;
     edtQuantidade: TEdit;
     edtNomeProd: TEdit;
+    btnRelatorio: TButton;
     procedure edtCodProdKeyPress(Sender: TObject; var Key: Char);
     procedure edtCodProdKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -29,6 +30,7 @@ type
     procedure btnExcluiCadProdClick(Sender: TObject);
     procedure btnEditaCadProdClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
+    procedure btnRelatorioClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -42,7 +44,7 @@ var
 
 implementation
 
- uses  untDmConexao,principal_main,untConsultaProdutos ;
+ uses  untDmConexao,principal_main,untConsultaProdutos , UntRelatorioProdutos;
 {$R *.dfm}
 
 procedure TExibeCadastroProduto.btnEditaCadProdClick(Sender: TObject);
@@ -67,6 +69,26 @@ begin
 
        edtDataProd.clear;
        end;
+end;
+
+procedure TExibeCadastroProduto.btnRelatorioClick(Sender: TObject);
+begin
+
+with dmconexoes do
+  begin
+   qrEstoque.Close  ;
+   qrEstoque.SQL.Clear;
+   qrEstoque.SQL.Add('SELECT * FROM PRODUTO WHERE CODIGO = 0')  ;
+   qrEstoque.Open;
+
+   frmRelatorio := TfrmRelatorio.Create(self);
+   frmRelatorio.rlr_RelatorioProdutos.Preview();
+  end;
+
+
+//          Application.CreateForm(TfrmRelatorio,frmRelatorio);  //CRIA A TELA
+//          frmRelatorio.showmodal;                           //CHAMA O FORMULARIO
+//          frmRelatorio.Free;                                //LIBERA A MEMORIA NO FORMULARIO
 end;
 
 procedure TExibeCadastroProduto.btnSalvarClick(Sender: TObject);

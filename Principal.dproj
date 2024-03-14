@@ -143,6 +143,14 @@
             <Form>frmCaixaVendas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UntRelatorioProdutos.pas">
+            <Form>frmRelatorio</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="untCupom.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

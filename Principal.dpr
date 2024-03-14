@@ -13,7 +13,9 @@ uses
   UntFuncoes in 'UntFuncoes.pas',
   Venda_Itens in 'Venda_Itens.pas' {frmVendaItens},
   UntFiadoCli in 'UntFiadoCli.pas' {FiadosCli},
-  UntVendas in 'UntVendas.pas' {frmCaixaVendas};
+  UntVendas in 'UntVendas.pas' {frmCaixaVendas},
+  UntRelatorioProdutos in 'UntRelatorioProdutos.pas' {frmRelatorio},
+  untCupom in 'untCupom.pas' {Form1};
 
 {$R *.res}
 
@@ -31,5 +33,7 @@ begin
   Application.CreateForm(TfrmVendaItens, frmVendaItens);
   Application.CreateForm(TFiadosCli, FiadosCli);
   Application.CreateForm(TFrmCaixaVendas, FrmCaixaVendas);
+  Application.CreateForm(TfrmRelatorio, frmRelatorio);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

@@ -84,6 +84,7 @@ object frmConsultaProduto: TfrmConsultaProduto
       end>
   end
   object DsProdutos: TDataSource
+    DataSet = dmconexoes.qrEstoque
     Left = 336
     Top = 184
   end

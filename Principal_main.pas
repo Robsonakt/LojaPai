@@ -61,7 +61,7 @@ implementation
 
 uses
   untDmConexao,untCadastroCliente,untCadastroProduto,untConsultaCliente,untConsultaProdutos,untExibeCadastroCliente,UntExibeCadastroProduto,
-  UntVendas, Venda_Itens;
+  UntVendas, Venda_Itens, UntRelatorioProdutos;
 
 {$R *.dfm}
 

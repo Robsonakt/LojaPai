@@ -6,16 +6,17 @@
     Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=@66E$Y$;Persist Security Info=True;' +
-      'User ID=sa;Initial Catalog=ROBSON;Data Source=DEV3;Use Procedure' +
-      ' for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ' +
-      'ID=DEV3;Use Encryption for Data=False;Tag with column collation ' +
-      'when possible=False'
+      'User ID=sa;Initial Catalog=ROBSON;Data Source=IMPORTACAO\SQL2019' +
+      ';Use Procedure for Prepare=1;Auto Translate=True;Packet Size=409' +
+      '6;Workstation ID=DEV3;Use Encryption for Data=False;Tag with col' +
+      'umn collation when possible=False'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
     Left = 296
     Top = 16
   end
   object qrEstoque: TADOQuery
+    Active = True
     Connection = conRobson
     CursorType = ctStatic
     Parameters = <>
@@ -180,5 +181,10 @@
     object qrItensVendaCodBarras: TIntegerField
       FieldName = 'CodBarras'
     end
+  end
+  object dsEstoque: TDataSource
+    DataSet = qrEstoque
+    Left = 248
+    Top = 104
   end
 end

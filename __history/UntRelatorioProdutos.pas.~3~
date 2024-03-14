@@ -1,0 +1,25 @@
+unit UntRelatorioProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport;
+
+type
+  TuntRelatorio = class(TForm)
+    rlr_RelatorioProdutos: TRLReport;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  untRelatorio: TuntRelatorio;
+
+implementation
+
+{$R *.dfm}
+
+end.

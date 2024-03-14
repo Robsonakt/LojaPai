@@ -43,6 +43,7 @@ type
     qrVendasValorPago: TBCDField;
     qrVendasDataVenda: TDateTimeField;
     qrVendasCodVenda: TAutoIncField;
+    dsEstoque: TDataSource;
   private
     { Private declarations }
   public

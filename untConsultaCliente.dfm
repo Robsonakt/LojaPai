@@ -96,7 +96,6 @@ object frmConsultaCliente: TfrmConsultaCliente
       item
         Expanded = False
         FieldName = 'datacadastrocliente'
-        Width = 64
         Visible = True
       end>
   end

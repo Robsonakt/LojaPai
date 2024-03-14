@@ -1,0 +1,117 @@
+object frmRelatorio: TfrmRelatorio
+  Left = 0
+  Top = 0
+  Caption = 'Relat'#243'rio'
+  ClientHeight = 819
+  ClientWidth = 1074
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object rlr_RelatorioProdutos: TRLReport
+    Left = 8
+    Top = 0
+    Width = 794
+    Height = 1123
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    PageSetup.PaperSize = fpCustom
+    PageSetup.PaperWidth = 210.000000000000000000
+    PageSetup.PaperHeight = 297.000000000000000000
+    Transparent = False
+    object RLBand_Cabecalho: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 83
+      BandType = btHeader
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 0
+        Top = 0
+        Width = 39
+        Height = 18
+        Align = faLeftTop
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Text = ''
+      end
+      object RLLabel_Cabecalho: TRLLabel
+        Left = 331
+        Top = 33
+        Width = 55
+        Height = 16
+        Align = faCenter
+        Caption = 'Relat'#243'rio'
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 647
+        Top = 0
+        Width = 71
+        Height = 19
+        Align = faRightTop
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Info = itHour
+        Text = ''
+      end
+    end
+    object RLBand_Titulo: TRLBand
+      Left = 38
+      Top = 121
+      Width = 718
+      Height = 88
+      object RLLabel_Titulo: TRLLabel
+        Left = 298
+        Top = 32
+        Width = 122
+        Height = 24
+        Align = faCenter
+        Caption = 'PRODUTOS'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -21
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+    end
+    object RLBand_Colunas: TRLBand
+      Left = 38
+      Top = 209
+      Width = 718
+      Height = 97
+    end
+    object RLBand_Detalhes: TRLBand
+      Left = 38
+      Top = 306
+      Width = 718
+      Height = 104
+    end
+    object RLBand_Rodape: TRLBand
+      Left = 38
+      Top = 410
+      Width = 718
+      Height = 16
+    end
+  end
+end
