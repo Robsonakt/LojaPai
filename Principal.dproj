@@ -148,7 +148,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="untCupom.pas">
-            <Form>Form1</Form>
+            <Form>frmCupom</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

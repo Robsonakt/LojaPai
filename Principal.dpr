@@ -15,7 +15,7 @@ uses
   UntFiadoCli in 'UntFiadoCli.pas' {FiadosCli},
   UntVendas in 'UntVendas.pas' {frmCaixaVendas},
   UntRelatorioProdutos in 'UntRelatorioProdutos.pas' {frmRelatorio},
-  untCupom in 'untCupom.pas' {Form1};
+  untCupom in 'untCupom.pas' {frmCupom};
 
 {$R *.res}
 
@@ -34,6 +34,6 @@ begin
   Application.CreateForm(TFiadosCli, FiadosCli);
   Application.CreateForm(TFrmCaixaVendas, FrmCaixaVendas);
   Application.CreateForm(TfrmRelatorio, frmRelatorio);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmCupom, frmCupom);
   Application.Run;
 end.
