@@ -144,11 +144,19 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UntRelatorioProdutos.pas">
-            <Form>frmRelatorio</Form>
+            <Form>frmRelatorioProd</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="untCupom.pas">
             <Form>frmCupom</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UntRelatorioCliente.pas">
+            <Form>frmRelatorioCli</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UntRelatorioVendas.pas">
+            <Form>frmRelatorioVendas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

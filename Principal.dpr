@@ -14,8 +14,10 @@ uses
   Venda_Itens in 'Venda_Itens.pas' {frmVendaItens},
   UntFiadoCli in 'UntFiadoCli.pas' {FiadosCli},
   UntVendas in 'UntVendas.pas' {frmCaixaVendas},
-  UntRelatorioProdutos in 'UntRelatorioProdutos.pas' {frmRelatorio},
-  untCupom in 'untCupom.pas' {frmCupom};
+  UntRelatorioProdutos in 'UntRelatorioProdutos.pas' {frmRelatorioProd},
+  untCupom in 'untCupom.pas' {frmCupom},
+  UntRelatorioCliente in 'UntRelatorioCliente.pas' {frmRelatorioCli},
+  UntRelatorioVendas in 'UntRelatorioVendas.pas' {frmRelatorioVendas};
 
 {$R *.res}
 
@@ -27,13 +29,14 @@ begin
   Application.CreateForm(TfrmProduto, frmProduto);
   Application.CreateForm(TfrmConsultaProduto, frmConsultaProduto);
   Application.CreateForm(TfrmCliente, frmCliente);
-  Application.CreateForm(TfrmConsultaCliente, frmConsultaCliente);
   Application.CreateForm(TExibeCadastroProduto, ExibeCadastroProduto);
   Application.CreateForm(TfrmExibeCadastroCliente, frmExibeCadastroCliente);
   Application.CreateForm(TfrmVendaItens, frmVendaItens);
   Application.CreateForm(TFiadosCli, FiadosCli);
   Application.CreateForm(TFrmCaixaVendas, FrmCaixaVendas);
-  Application.CreateForm(TfrmRelatorio, frmRelatorio);
+  Application.CreateForm(TfrmRelatorioProd, frmRelatorioProd);
   Application.CreateForm(TfrmCupom, frmCupom);
+  Application.CreateForm(TfrmRelatorioCli, frmRelatorioCli);
+  Application.CreateForm(TfrmRelatorioVendas, frmRelatorioVendas);
   Application.Run;
 end.
