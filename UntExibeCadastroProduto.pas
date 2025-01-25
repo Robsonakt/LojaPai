@@ -23,6 +23,10 @@ type
     edtQuantidade: TEdit;
     edtNomeProd: TEdit;
     btnRelatorio: TButton;
+    btnExclui: TBitBtn;
+    btnEdita: TBitBtn;
+    btnSalva: TBitBtn;
+    btnRelatorios: TBitBtn;
     procedure edtCodProdKeyPress(Sender: TObject; var Key: Char);
     procedure edtCodProdKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -31,6 +35,10 @@ type
     procedure btnEditaCadProdClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnRelatorioClick(Sender: TObject);
+    procedure btnEditaClick(Sender: TObject);
+    procedure btnExcluiClick(Sender: TObject);
+    procedure btnSalvaClick(Sender: TObject);
+    procedure btnRelatoriosClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -57,9 +65,33 @@ edtValorProduto.Enabled := not edtValorProduto.Enabled ;
 btnEditaCadProd.Enabled := false ;
 end;
 
+procedure TExibeCadastroProduto.btnEditaClick(Sender: TObject);
+begin
+edtNomeProd.Enabled := not edtNomeProd.Enabled ;
+edtQuantidade.Enabled := not edtQuantidade.Enabled ;
+edtValorProduto.Enabled := not edtValorProduto.Enabled ;
+
+
+btnEdita.Enabled := false ;
+end;
+
 procedure TExibeCadastroProduto.btnExcluiCadProdClick(Sender: TObject);
 begin
        with dmconexoes do
+       begin
+       qrEstoque.Close  ;
+       qrEstoque.SQL.Clear;
+       qrEstoque.SQL.text := 'delete FROM PRODUTO WHERE CODIGO = :pcod'  ;
+       qrEstoque.Parameters.ParamByName('pcod').Value :=  edtCodProd.Text ;
+       qrEstoque.ExecSQL;
+
+       edtDataProd.clear;
+       end;
+end;
+
+procedure TExibeCadastroProduto.btnExcluiClick(Sender: TObject);
+begin
+     with dmconexoes do
        begin
        qrEstoque.Close  ;
        qrEstoque.SQL.Clear;
@@ -78,17 +110,60 @@ with dmconexoes do
   begin
    qrEstoque.Close  ;
    qrEstoque.SQL.Clear;
-   qrEstoque.SQL.Add('SELECT * FROM PRODUTO WHERE CODIGO = 0')  ;
+   qrEstoque.SQL.Add('SELECT * FROM PRODUTO ')  ;
    qrEstoque.Open;
 
-   frmRelatorio := TfrmRelatorio.Create(self);
-   frmRelatorio.rlr_RelatorioProdutos.Preview();
+   frmRelatorioProd := TfrmRelatorioProd.Create(self);
+   frmRelatorioProd.rlr_RelatorioProdutos.Preview();
   end;
 
 
 //          Application.CreateForm(TfrmRelatorio,frmRelatorio);  //CRIA A TELA
 //          frmRelatorio.showmodal;                           //CHAMA O FORMULARIO
 //          frmRelatorio.Free;                                //LIBERA A MEMORIA NO FORMULARIO
+end;
+
+procedure TExibeCadastroProduto.btnRelatoriosClick(Sender: TObject);
+begin
+
+with dmconexoes do
+  begin
+   qrEstoque.Close  ;
+   qrEstoque.SQL.Clear;
+   qrEstoque.SQL.Add('SELECT * FROM PRODUTO ')  ;
+   qrEstoque.Open;
+
+   frmRelatorioProd := TfrmRelatorioProd.Create(self);
+   frmRelatorioProd.rlr_RelatorioProdutos.Preview();
+  end;
+  //          Application.CreateForm(TfrmRelatorio,frmRelatorio);   //CRIA A TELA
+  //          frmRelatorio.showmodal;                               //CHAMA O FORMULARIO
+  //          frmRelatorio.Free;                                    //LIBERA A MEMORIA NO FORMULARIO
+end;
+
+procedure TExibeCadastroProduto.btnSalvaClick(Sender: TObject);
+begin
+
+  with dmconexoes do
+  begin
+  qrEstoque.Close  ;
+  qrEstoque.SQL.Clear;
+  qrEstoque.SQL.text := 'UPDATE  PRODUTO SET quantidade = :PQTD, descricao = :PDESC, valorproduto = :PVALOR  WHERE CODIGO = :pcod';
+  qrEstoque.Parameters.ParamByName('PQTD').Value    :=  edtQuantidade.Text ;
+  qrEstoque.Parameters.ParamByName('PDESC').Value   :=  edtNomeProd.Text ;
+  qrEstoque.Parameters.ParamByName('PVALOR').Value  :=  edtValorProduto.Text ;
+  qrEstoque.Parameters.ParamByName('pcod').Value    :=  edtCodProd.Text ;
+  qrEstoque.ExecSQL;
+
+   Application.MessageBox('Produto Gravado com Sucesso!!','Aviso',mb_ok+MB_ICONINFORMATION) ;
+   btnEdita.Enabled := true ;
+
+
+   edtNomeProd.Enabled      := not edtNomeProd.Enabled ;
+   edtQuantidade.Enabled    := not edtQuantidade.Enabled ;
+   edtValorProduto.Enabled  := not edtValorProduto.Enabled ;
+  end;
+
 end;
 
 procedure TExibeCadastroProduto.btnSalvarClick(Sender: TObject);

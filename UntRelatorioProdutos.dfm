@@ -1,7 +1,7 @@
-object frmRelatorio: TfrmRelatorio
+object frmRelatorioProd: TfrmRelatorioProd
   Left = 0
   Top = 0
-  Caption = 'Relat'#243'rio'
+  Caption = 'Relat'#243'rio Produto'
   ClientHeight = 819
   ClientWidth = 1074
   Color = clBtnFace
@@ -14,7 +14,7 @@ object frmRelatorio: TfrmRelatorio
   PixelsPerInch = 96
   TextHeight = 13
   object rlr_RelatorioProdutos: TRLReport
-    Left = 8
+    Left = 0
     Top = 0
     Width = 794
     Height = 1123

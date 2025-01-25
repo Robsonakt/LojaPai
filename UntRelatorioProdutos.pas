@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport;
 
 type
-  TfrmRelatorio = class(TForm)
+  TfrmRelatorioProd = class(TForm)
     rlr_RelatorioProdutos: TRLReport;
     RLBand_Cabecalho: TRLBand;
     RLSystemInfo1: TRLSystemInfo;
@@ -31,7 +31,7 @@ type
   end;
 
 var
-  frmRelatorio: TfrmRelatorio;
+  frmRelatorioProd: TfrmRelatorioProd;
 
 implementation
 

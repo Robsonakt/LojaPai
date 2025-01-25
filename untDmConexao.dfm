@@ -1,4 +1,4 @@
-﻿object dmconexoes: Tdmconexoes
+object dmconexoes: Tdmconexoes
   OldCreateOrder = False
   Height = 335
   Width = 701
@@ -12,11 +12,10 @@
       'umn collation when possible=False'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
-    Left = 296
+    Left = 464
     Top = 16
   end
   object qrEstoque: TADOQuery
-    Active = True
     Connection = conRobson
     CursorType = ctStatic
     Parameters = <>
@@ -56,12 +55,12 @@
     object qrClientenome: TWideStringField
       FieldName = 'nome'
       FixedChar = True
-      Size = 10
+      Size = 100
     end
     object qrClienteendereco: TWideStringField
       FieldName = 'endereco'
       FixedChar = True
-      Size = 10
+      Size = 100
     end
     object qrClientevalor: TIntegerField
       FieldName = 'valor'
@@ -79,8 +78,9 @@
       FixedChar = True
       Size = 10
     end
-    object qrClientecodigo: TIntegerField
+    object qrClientecodigo: TAutoIncField
       FieldName = 'codigo'
+      ReadOnly = True
     end
     object qrClientetelefone: TStringField
       FieldName = 'telefone'
@@ -94,15 +94,14 @@
     end
     object qrClientevalorfiado: TBCDField
       FieldName = 'valorfiado'
-      currency = True
       Precision = 10
       Size = 2
     end
   end
   object vwGerarNumCliente: TADOQuery
     Parameters = <>
-    Left = 376
-    Top = 16
+    Left = 240
+    Top = 24
   end
   object qrcomando: TADOQuery
     Connection = conRobson
@@ -131,6 +130,7 @@
     end
     object qrVendasValorTotal: TBCDField
       FieldName = 'ValorTotal'
+      currency = True
       Precision = 10
       Size = 2
     end
@@ -147,9 +147,20 @@
     object qrVendasDataVenda: TDateTimeField
       FieldName = 'DataVenda'
     end
-    object qrVendasCodVenda: TAutoIncField
+    object qrVendasCodVenda: TIntegerField
       FieldName = 'CodVenda'
-      ReadOnly = True
+    end
+    object qrVendasDescriProd: TStringField
+      FieldName = 'DescriProd'
+      Size = 50
+    end
+    object qrVendasQuantidade: TIntegerField
+      FieldName = 'Quantidade'
+    end
+    object qrVendasValorProdUni: TBCDField
+      FieldName = 'ValorProdUni'
+      Precision = 10
+      Size = 2
     end
   end
   object qrItensVenda: TADOQuery
@@ -169,22 +180,35 @@
     object qrItensVendaCodVenda: TIntegerField
       FieldName = 'CodVenda'
     end
-    object qrItensVendaDescrição: TStringField
-      FieldName = 'Descri'#231#227'o'
+    object qrItensVendaDescricao: TStringField
+      FieldName = 'Descricao'
       Size = 50
     end
-    object qrItensVendaValor: TBCDField
-      FieldName = 'Valor'
+    object qrItensVendaValorTotal: TBCDField
+      FieldName = 'ValorTotal'
       Precision = 10
       Size = 2
     end
-    object qrItensVendaCodBarras: TIntegerField
-      FieldName = 'CodBarras'
+    object qrItensVendaQuantidade: TIntegerField
+      FieldName = 'Quantidade'
+    end
+    object qrItensVendaValorProdUni: TBCDField
+      FieldName = 'ValorProdUni'
+      Precision = 10
+      Size = 2
+    end
+    object qrItensVendaDataVenda: TDateTimeField
+      FieldName = 'DataVenda'
     end
   end
   object dsEstoque: TDataSource
     DataSet = qrEstoque
     Left = 248
     Top = 104
+  end
+  object dsCliente: TDataSource
+    DataSet = qrCliente
+    Left = 248
+    Top = 176
   end
 end
