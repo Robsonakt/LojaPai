@@ -12,17 +12,15 @@ object ExibeCadastroProduto: TExibeCadastroProduto
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object LbCodProd: TLabel
     Left = 27
     Top = 53
-    Width = 74
+    Width = 97
     Height = 13
-    Caption = 'Codigo Produto'
+    Caption = 'Codigo Produto (F2)'
   end
   object Lbnomeproduto: TLabel
     Left = 27

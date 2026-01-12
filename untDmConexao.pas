@@ -30,7 +30,6 @@ type
     qrClientecodigo: TAutoIncField;
     qrClientetelefone: TStringField;
     qrClientedatacadastrocliente: TDateTimeField;
-    qrClientenumeroresidencia: TIntegerField;
     qrClientevalorfiado: TBCDField;
     qrVendasCodCli: TIntegerField;
     qrVendasData: TWideStringField;
@@ -50,6 +49,7 @@ type
     qrItensVendaQuantidade: TIntegerField;
     qrItensVendaValorProdUni: TBCDField;
     qrItensVendaDataVenda: TDateTimeField;
+    qrClientenumeroresidencia: TWideStringField;
   private
     { Private declarations }
   public

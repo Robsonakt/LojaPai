@@ -22,7 +22,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure edtPesquisaCLienteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-      procedure LocalizaCLiente();
+    procedure LocalizaCLiente();
   private
     { Private declarations }
   public

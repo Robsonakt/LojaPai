@@ -1,0 +1,45 @@
+# Windows/IDE/Delphi
+*.dproj
+*.dproj.local
+*.identcache
+*.res
+*.stat
+*.cfg
+*.dcu
+*.~*
+*.bak
+*.local
+*.cache
+
+*.dfm
+*.exe
+*.dll
+*.lib
+*.bpl
+*.obj
+*.o
+*.a
+
+# Diretórios de build/output
+Win32/
+Win64/
+Debug/
+Release/
+build/
+bin/
+
+# IDEs
+.vscode/
+.idea/
+__history/
+
+# Logs e temporários
+*.log
+*.tmp
+*.swp
+*.lock
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

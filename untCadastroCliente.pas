@@ -111,9 +111,9 @@ begin
             dmConexoes.qrCliente.fieldbyname('NOME').asstring                               := trim(edtnomecliente.text);
             dmConexoes.qrCliente.fieldbyname('CPF').asstring                                := trim(edtcpfcliente.text);
             dmConexoes.qrCliente.fieldbyname('ENDERECO').asstring                           := trim(edtendereco.text);
-            qrCliente.fieldbyname('numeroresidencia').asstring                   := trim(edtnumero.text);
-            qrCliente.fieldbyname('TELEFONE').asstring                           := trim(edtTelefone.text);
-            qrcliente.FieldByName('datacadastrocliente').AsDateTime              := StrToDateTime(edtDatacadastro.Text);
+            qrCliente.fieldbyname('numeroresidencia').asstring                              := trim(edtnumero.text);
+            qrCliente.fieldbyname('TELEFONE').asstring                                      := trim(edtTelefone.text);
+            qrcliente.FieldByName('datacadastrocliente').AsDateTime                         := StrToDateTime(edtDatacadastro.Text);
             qrCliente.post;
 
             application.MessageBox('Cliente Cadastrado com Sucesso','Cadastro  ',mb_ok+MB_ICONINFORMATION);

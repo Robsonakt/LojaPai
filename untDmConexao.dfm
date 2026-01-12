@@ -1,15 +1,14 @@
 object dmconexoes: Tdmconexoes
-  OldCreateOrder = False
   Height = 335
   Width = 701
   object conRobson: TADOConnection
     Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=@66E$Y$;Persist Security Info=True;' +
-      'User ID=sa;Initial Catalog=ROBSON;Data Source=IMPORTACAO\SQL2019' +
-      ';Use Procedure for Prepare=1;Auto Translate=True;Packet Size=409' +
-      '6;Workstation ID=DEV3;Use Encryption for Data=False;Tag with col' +
-      'umn collation when possible=False'
+      'User ID=sa;Initial Catalog=ROBSON;Data Source=.;Use Procedure fo' +
+      'r Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=' +
+      'DEV3;Use Encryption for Data=False;Tag with column collation whe' +
+      'n possible=False'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
     Left = 464
@@ -89,13 +88,14 @@ object dmconexoes: Tdmconexoes
     object qrClientedatacadastrocliente: TDateTimeField
       FieldName = 'datacadastrocliente'
     end
-    object qrClientenumeroresidencia: TIntegerField
-      FieldName = 'numeroresidencia'
-    end
     object qrClientevalorfiado: TBCDField
       FieldName = 'valorfiado'
       Precision = 10
       Size = 2
+    end
+    object qrClientenumeroresidencia: TWideStringField
+      FieldName = 'numeroresidencia'
+      Size = 50
     end
   end
   object vwGerarNumCliente: TADOQuery

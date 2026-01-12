@@ -3,7 +3,7 @@ object frmRelatorioProd: TfrmRelatorioProd
   Top = 0
   Caption = 'Relat'#243'rio Produto'
   ClientHeight = 819
-  ClientWidth = 1074
+  ClientWidth = 857
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
